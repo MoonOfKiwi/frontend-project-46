@@ -20,7 +20,7 @@ test('getCompareReducer returns reducer function', () => {
   expect(typeof getCompareReducer(file1, file2)).toBe('function');
 });
 
-test('Reducer testing ', () => {
+test('Reducer testing', () => {
   const reducer = getCompareReducer(file1, file2);
   expect(reducer({}, 'host').host).toEqual(
     { file1: file1.host, file2: file2.host, diff: SAME },
