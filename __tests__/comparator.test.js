@@ -43,7 +43,7 @@ test('compareFileData tests', () => {
     follow: { file1: false, file2: undefined, diff: FIRST_EXISTS },
     host: { file1: 'hexlet.io', file2: 'hexlet.io', diff: SAME },
     proxy: { file1: '123.234.53.22', file2: undefined, diff: FIRST_EXISTS },
-    timeout: { file1: 50, file2: 20, diff: DIFFERENT }, 
-    verbose: { file1: undefined, file2: true, diff: SECOND_EXISTS}
-  })
+    timeout: { file1: 50, file2: 20, diff: DIFFERENT },
+    verbose: { file1: undefined, file2: true, diff: SECOND_EXISTS },
+  });
 });
