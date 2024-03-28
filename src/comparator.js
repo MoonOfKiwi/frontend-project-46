@@ -38,6 +38,7 @@ const compareFileData = (fileData1, fileData2) => {
 };
 
 export {
+  getCompareReducer,
   compareFileData,
   SAME,
   FIRST_EXISTS,
