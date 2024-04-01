@@ -1,5 +1,5 @@
 import { program } from 'commander';
-import parseFile from './parser.js';
+import parseFile from './parsers.js';
 import { compareFileData } from './comparator.js';
 import getResultInPlusFormat from './formaters.js';
 
