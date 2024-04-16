@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 import _ from 'lodash';
 
 const SAME = 'same values';
@@ -10,7 +11,12 @@ const getCompareReducer = (fileData1, fileData2) => {
     const file1Value = fileData1[key];
     const file2Value = fileData2[key];
 
-    acc[key] = { file1: fileData1[key], file2: fileData2[key] };
+    if (typeof file1Value === 'object' && typeof file2Value === 'object') {
+      acc[key] = { nest: compareFileData(file1Value, file2Value) };
+      return acc;
+    }
+
+    acc[key] = { file1: file1Value, file2: file2Value };
 
     if (file1Value === file2Value) {
       acc[key].diff = SAME;
