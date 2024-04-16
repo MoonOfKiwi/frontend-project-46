@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-import getGendiffInfo from '../index.js';
+import { getGendiffInterface } from '../src/gendiffInterface.js';
 
-getGendiffInfo();
+getGendiffInterface();
