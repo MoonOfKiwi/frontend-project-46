@@ -5,9 +5,9 @@ import getResultInJSONFormat from './json.js';
 const formatComparedData = (comparedData, formatName = 'stylish') => {
   switch (formatName) {
     case 'stylish':
-      return getResultInStylishFormat(comparedData);
+      return `${getResultInStylishFormat(comparedData)}\n`;
     case 'plain':
-      return getResultInPlainFormat(comparedData);
+      return `${getResultInPlainFormat(comparedData)}\n`;
     case 'json':
       return getResultInJSONFormat(comparedData);
     default:
