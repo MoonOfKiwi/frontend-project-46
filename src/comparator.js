@@ -6,29 +6,39 @@ const FIRST_EXISTS = 'first exists, second undefined';
 const SECOND_EXISTS = 'first undefined, second exists';
 const DIFFERENT = 'different values';
 
+const getDiffStatus = (value1, value2) => {
+  if (value1 === value2) {
+    return SAME;
+  }
+  if (value1 === undefined) {
+    return SECOND_EXISTS;
+  }
+  if (value2 === undefined) {
+    return FIRST_EXISTS;
+  }
+  if (value1 !== value2) {
+    return DIFFERENT;
+  }
+
+  throw Error(`Unexpected result for values: ${value1} and ${value2}!`);
+};
+
 const getCompareReducer = (fileData1, fileData2) => {
   const reducer = (acc, key) => {
     const file1Value = fileData1[key];
     const file2Value = fileData2[key];
 
     if (typeof file1Value === 'object' && typeof file2Value === 'object') {
-      acc[key] = { nest: compareFileData(file1Value, file2Value) };
-      return acc;
+      return { ...acc, [key]: { nest: compareFileData(file1Value, file2Value) } };
     }
 
-    acc[key] = { file1: file1Value, file2: file2Value };
+    const result = {
+      file1: file1Value,
+      file2: file2Value,
+      diff: getDiffStatus(file1Value, file2Value),
+    };
 
-    if (file1Value === file2Value) {
-      acc[key].diff = SAME;
-    } else if (file1Value === undefined) {
-      acc[key].diff = SECOND_EXISTS;
-    } else if (file2Value === undefined) {
-      acc[key].diff = FIRST_EXISTS;
-    } else if (fileData1 !== fileData2) {
-      acc[key].diff = DIFFERENT;
-    }
-
-    return acc;
+    return { ...acc, [key]: result };
   };
 
   return reducer;
@@ -44,6 +54,7 @@ const compareFileData = (fileData1, fileData2) => {
 };
 
 export {
+  getDiffStatus,
   getCompareReducer,
   compareFileData,
   SAME,
