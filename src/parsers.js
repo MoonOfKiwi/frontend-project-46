@@ -1,5 +1,4 @@
 import yaml from 'yaml';
-import { formatFilepath, readFile, getFileExtension } from './fileUtils.js';
 
 const parseData = (fileformat, filedata) => {
   switch (fileformat) {
@@ -13,12 +12,4 @@ const parseData = (fileformat, filedata) => {
   }
 };
 
-const parseFile = (filepath) => {
-  const fullFilepath = formatFilepath(filepath);
-  const fileExtension = getFileExtension(fullFilepath);
-  const rawData = readFile(fullFilepath);
-  const result = parseData(fileExtension, rawData);
-  return result;
-};
-
-export default parseFile;
+export default parseData;

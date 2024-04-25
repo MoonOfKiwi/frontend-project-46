@@ -1,4 +1,4 @@
-import parseFile from './parsers.js';
+import { parseFile } from './fileUtils.js';
 import { compareFileData } from './comparator.js';
 import formatComparedData from './formatters/index.js';
 

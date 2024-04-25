@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import parseData from './parsers.js';
 
 const formatFilepath = (filepath) => {
   if (filepath.startsWith('/')) {
@@ -19,4 +20,17 @@ const readFile = (filepath) => {
 
 const getFileExtension = (filepath) => path.extname(filepath);
 
-export { formatFilepath, readFile, getFileExtension };
+const parseFile = (filepath) => {
+  const fullFilepath = formatFilepath(filepath);
+  const fileExtension = getFileExtension(fullFilepath);
+  const rawData = readFile(fullFilepath);
+  const result = parseData(fileExtension, rawData);
+  return result;
+};
+
+export {
+  parseFile,
+  formatFilepath,
+  readFile,
+  getFileExtension,
+};
