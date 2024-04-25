@@ -1,47 +1,26 @@
 import {
-  getDiffStatus,
-  SAME,
-  FIRST_EXISTS,
-  SECOND_EXISTS,
-  DIFFERENT,
+  diffStatus,
   getCompareReducer,
 } from '../src/comparator.js';
-
-test.each([
-  {
-    value1: 'foo', value2: 'foo', expected: SAME,
-  },
-  {
-    value2: 'baz', expected: SECOND_EXISTS,
-  },
-  {
-    value1: 'foo', expected: FIRST_EXISTS,
-  },
-  {
-    value1: 'foo', value2: 'baz', expected: DIFFERENT,
-  },
-])('getDiffStatus: $value1, $value2, status - $expected', ({
-  value1, value2, expected,
-}) => expect(getDiffStatus(value1, value2)).toEqual(expected));
 
 test.each([
   {
     name: 'Simple same values',
     fileData1: { key: 42 },
     fileData2: { key: 42 },
-    expected: { key: { file1: 42, file2: 42, diff: SAME } },
+    expected: { key: { value: 42, diff: diffStatus.SAME } },
   },
   {
     name: 'Simple different values',
     fileData1: { key: 42 },
     fileData2: { key: 24 },
-    expected: { key: { file1: 42, file2: 24, diff: DIFFERENT } },
+    expected: { key: { value: [42, 24], diff: diffStatus.DIFFERENT } },
   },
   {
     name: 'First undefined, Second object',
     fileData1: {},
     fileData2: { key: { foo: 'bar' } },
-    expected: { key: { file1: undefined, file2: { foo: 'bar' }, diff: SECOND_EXISTS } },
+    expected: { key: { value: { foo: 'bar' }, diff: diffStatus.SECOND_EXISTS } },
   },
   {
     name: 'Nested objects',
@@ -50,9 +29,10 @@ test.each([
     expected: {
 
       key: {
-        nest: {
-          bar: { file1: 'foo', file2: undefined, diff: FIRST_EXISTS },
-          foo: { file1: undefined, file2: 'bar', diff: SECOND_EXISTS },
+        diff: diffStatus.NESTED,
+        value: {
+          bar: { value: 'foo', diff: diffStatus.FIRST_EXISTS },
+          foo: { value: 'bar', diff: diffStatus.SECOND_EXISTS },
         },
       },
 
