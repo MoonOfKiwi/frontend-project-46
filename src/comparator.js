@@ -6,8 +6,8 @@ const diffStatus = {
   FIRST_EXISTS: 'first exists, second undefined',
   SECOND_EXISTS: 'first undefined, second exists',
   DIFFERENT: 'different values',
-  NESTED: "nested data"
-}
+  NESTED: 'nested data',
+};
 
 const getCompareReducer = (fileData1, fileData2) => {
   const reducer = (acc, key) => {
