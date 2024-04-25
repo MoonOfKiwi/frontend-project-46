@@ -1,12 +1,10 @@
 import _ from 'lodash';
 import {
-  SAME,
-  FIRST_EXISTS,
-  SECOND_EXISTS,
-  DIFFERENT,
+  diffStatus,
 } from '../comparator.js';
 
-const formatValue = (value) => {
+const formatValue = (value, diff = null) => {
+  if (diff === diffStatus.DIFFERENT) return [formatValue(value[0]), formatValue(value[1])];
   if (_.isObject(value)) return '[complex value]';
   if (typeof value === 'string') return `'${value}'`;
   return `${value}`;
@@ -14,26 +12,23 @@ const formatValue = (value) => {
 
 const getResultInPlainFormat = (comparedData, prefix = []) => {
   const formatByKey = (key) => {
-    if ('nest' in comparedData[key]) {
-      return getResultInPlainFormat(comparedData[key].nest, [...prefix, key]);
-    }
-
-    const diffStatus = comparedData[key].diff;
-    const file1Value = formatValue(comparedData[key].file1);
-    const file2Value = formatValue(comparedData[key].file2);
+    const { value, diff } = comparedData[key];
+    const formatedValue = formatValue(value, diff);
     const propertyPath = [...prefix, key].join('.');
 
-    switch (diffStatus) {
-      case SAME:
+    switch (diff) {
+      case diffStatus.NESTED:
+        return getResultInPlainFormat(value, [...prefix, key]);
+      case diffStatus.SAME:
         return null;
-      case SECOND_EXISTS:
-        return `Property '${propertyPath}' was added with value: ${file2Value}`;
-      case FIRST_EXISTS:
+      case diffStatus.SECOND_EXISTS:
+        return `Property '${propertyPath}' was added with value: ${formatedValue}`;
+      case diffStatus.FIRST_EXISTS:
         return `Property '${propertyPath}' was removed`;
-      case DIFFERENT:
-        return `Property '${propertyPath}' was updated. From ${file1Value} to ${file2Value}`;
+      case diffStatus.DIFFERENT:
+        return `Property '${propertyPath}' was updated. From ${formatedValue[0]} to ${formatedValue[1]}`;
       default:
-        throw Error(`${diffStatus} is undefined!`);
+        throw Error(`${diff} is undefined!`);
     }
   };
 
