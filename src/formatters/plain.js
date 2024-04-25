@@ -5,7 +5,7 @@ import {
 
 const formatValue = (value, diff = null) => {
   if (diff === diffStatus.DIFFERENT) return [formatValue(value[0]), formatValue(value[1])];
-  if (_.isObject(value)) return '[complex value]';
+  if (_.isPlainObject(value)) return '[complex value]';
   if (typeof value === 'string') return `'${value}'`;
   return `${value}`;
 };
