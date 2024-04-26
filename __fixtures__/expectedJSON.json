@@ -1,1 +1,106 @@
-{"common":{"diff":"nested data","value":{"follow":{"diff":"first undefined, second exists","value":false},"setting1":{"diff":"same values","value":"Value 1"},"setting2":{"diff":"first exists, second undefined","value":200},"setting3":{"diff":"different values","value":[true,null]},"setting4":{"diff":"first undefined, second exists","value":"blah blah"},"setting5":{"diff":"first undefined, second exists","value":{"key5":"value5"}},"setting6":{"diff":"nested data","value":{"doge":{"diff":"nested data","value":{"wow":{"diff":"different values","value":["","so much"]}}},"key":{"diff":"same values","value":"value"},"ops":{"diff":"first undefined, second exists","value":"vops"}}}}},"group1":{"diff":"nested data","value":{"baz":{"diff":"different values","value":["bas","bars"]},"foo":{"diff":"same values","value":"bar"},"nest":{"diff":"different values","value":[{"key":"value"},"str"]}}},"group2":{"diff":"first exists, second undefined","value":{"abc":12345,"deep":{"id":45}}},"group3":{"diff":"first undefined, second exists","value":{"deep":{"id":{"number":45}},"fee":100500}}}
+{
+  "common": {
+    "diff": "nested data",
+    "value": {
+      "follow": {
+        "diff": "first undefined, second exists",
+        "value": false
+      },
+      "setting1": {
+        "diff": "same values",
+        "value": "Value 1"
+      },
+      "setting2": {
+        "diff": "first exists, second undefined",
+        "value": 200
+      },
+      "setting3": {
+        "diff": "different values",
+        "value": [
+          true,
+          null
+        ]
+      },
+      "setting4": {
+        "diff": "first undefined, second exists",
+        "value": "blah blah"
+      },
+      "setting5": {
+        "diff": "first undefined, second exists",
+        "value": {
+          "key5": "value5"
+        }
+      },
+      "setting6": {
+        "diff": "nested data",
+        "value": {
+          "doge": {
+            "diff": "nested data",
+            "value": {
+              "wow": {
+                "diff": "different values",
+                "value": [
+                  "",
+                  "so much"
+                ]
+              }
+            }
+          },
+          "key": {
+            "diff": "same values",
+            "value": "value"
+          },
+          "ops": {
+            "diff": "first undefined, second exists",
+            "value": "vops"
+          }
+        }
+      }
+    }
+  },
+  "group1": {
+    "diff": "nested data",
+    "value": {
+      "baz": {
+        "diff": "different values",
+        "value": [
+          "bas",
+          "bars"
+        ]
+      },
+      "foo": {
+        "diff": "same values",
+        "value": "bar"
+      },
+      "nest": {
+        "diff": "different values",
+        "value": [
+          {
+            "key": "value"
+          },
+          "str"
+        ]
+      }
+    }
+  },
+  "group2": {
+    "diff": "first exists, second undefined",
+    "value": {
+      "abc": 12345,
+      "deep": {
+        "id": 45
+      }
+    }
+  },
+  "group3": {
+    "diff": "first undefined, second exists",
+    "value": {
+      "deep": {
+        "id": {
+          "number": 45
+        }
+      },
+      "fee": 100500
+    }
+  }
+}
