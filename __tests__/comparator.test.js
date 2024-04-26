@@ -20,7 +20,7 @@ test.each([
     name: 'First undefined, Second object',
     fileData1: {},
     fileData2: { key: { foo: 'bar' } },
-    expected: { key: { value: { foo: 'bar' }, diff: diffStatus.SECOND_EXISTS } },
+    expected: { key: { value: { foo: 'bar' }, diff: diffStatus.SECOND } },
   },
   {
     name: 'Nested objects',
@@ -31,8 +31,8 @@ test.each([
       key: {
         diff: diffStatus.NESTED,
         value: {
-          bar: { value: 'foo', diff: diffStatus.FIRST_EXISTS },
-          foo: { value: 'bar', diff: diffStatus.SECOND_EXISTS },
+          bar: { value: 'foo', diff: diffStatus.FIRST },
+          foo: { value: 'bar', diff: diffStatus.SECOND },
         },
       },
 
