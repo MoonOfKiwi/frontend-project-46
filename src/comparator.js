@@ -3,8 +3,8 @@ import _ from 'lodash';
 
 const diffStatus = {
   SAME: 'same values',
-  FIRST_EXISTS: 'first exists, second undefined',
-  SECOND_EXISTS: 'first undefined, second exists',
+  FIRST: 'first exists, second undefined',
+  SECOND: 'first undefined, second exists',
   DIFFERENT: 'different values',
   NESTED: 'nested data',
 };
@@ -27,10 +27,10 @@ const getCompareReducer = (fileData1, fileData2) => {
       return { ...acc, [key]: { diff: diffStatus.SAME, value: file1Value } };
     }
     if (file1Value === undefined) {
-      return { ...acc, [key]: { diff: diffStatus.SECOND_EXISTS, value: file2Value } };
+      return { ...acc, [key]: { diff: diffStatus.SECOND, value: file2Value } };
     }
     if (file2Value === undefined) {
-      return { ...acc, [key]: { diff: diffStatus.FIRST_EXISTS, value: file1Value } };
+      return { ...acc, [key]: { diff: diffStatus.FIRST, value: file1Value } };
     }
     if (file1Value !== file2Value) {
       return { ...acc, [key]: { diff: diffStatus.DIFFERENT, value: [file1Value, file2Value] } };

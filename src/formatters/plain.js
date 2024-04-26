@@ -21,9 +21,9 @@ const getResultInPlainFormat = (comparedData, prefix = []) => {
         return getResultInPlainFormat(value, [...prefix, key]);
       case diffStatus.SAME:
         return null;
-      case diffStatus.SECOND_EXISTS:
+      case diffStatus.SECOND:
         return `Property '${propertyPath}' was added with value: ${formatedValue}`;
-      case diffStatus.FIRST_EXISTS:
+      case diffStatus.FIRST:
         return `Property '${propertyPath}' was removed`;
       case diffStatus.DIFFERENT:
         return `Property '${propertyPath}' was updated. From ${formatedValue[0]} to ${formatedValue[1]}`;

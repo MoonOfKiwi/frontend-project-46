@@ -37,9 +37,9 @@ const getResultInStylishFormat = (comparedData, replacer = ' ', spacesCount = 4,
         return `${longPadding}${key}: ${getResultInStylishFormat(value, replacer, spacesCount, depth + 1)}`;
       case diffStatus.SAME:
         return `${longPadding}${key}: ${formatedValue}`;
-      case diffStatus.SECOND_EXISTS:
+      case diffStatus.SECOND:
         return `${shortPadding}+ ${key}: ${formatedValue}`;
-      case diffStatus.FIRST_EXISTS:
+      case diffStatus.FIRST:
         return `${shortPadding}- ${key}: ${formatedValue}`;
       case diffStatus.DIFFERENT:
         return `${shortPadding}- ${key}: ${formatedValue[0]}\n${shortPadding}+ ${key}: ${formatedValue[1]}`;
